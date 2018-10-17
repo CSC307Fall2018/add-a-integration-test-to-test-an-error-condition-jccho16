@@ -51,7 +51,7 @@ describe('/todos', () => {
   });
 
   describe('DELETE /', () => {
-    it('should return 1 item in the array', () => {
+    it('should delete 1 item in the array', () => {
       return ToDo.create({
         subject: 'test',
       }).then((Todo) => {
@@ -60,10 +60,8 @@ describe('/todos', () => {
         });
       });
     });
-  });
 
-  describe('DELETE /', () => {
-    it('should return 1 item in the array', () => {
+    it('invalid delete 1 item in the array', () => {
       return request(app).delete(rootPath + '/1000').expect((response) => {
         return expect(response.body.delete).toEqual(false);
       });
