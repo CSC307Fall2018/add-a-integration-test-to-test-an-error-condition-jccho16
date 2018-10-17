@@ -59,6 +59,9 @@ router.route('/:id')
       todo.destroy().then(() => {
         res.json({ delete: true });
       });
+    })
+    .catch(() => {
+      res.json({ delete: false });
     });
   });
 

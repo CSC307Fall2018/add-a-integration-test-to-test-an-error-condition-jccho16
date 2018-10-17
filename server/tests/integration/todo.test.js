@@ -44,8 +44,29 @@ describe('/todos', () => {
         })
         .expect(200)
         .then((response) => {
+          var body = response.body;
           return expect(response.body.subject).toEqual('test');
         });
+    });
+  });
+
+  describe('DELETE /', () => {
+    it('should return 1 item in the array', () => {
+      return ToDo.create({
+        subject: 'test',
+      }).then((Todo) => {
+        return request(app).delete(rootPath + '/' + Todo.id).expect((response) => {
+          return expect(response.body.delete).toEqual(true);
+        });
+      });
+    });
+  });
+
+  describe('DELETE /', () => {
+    it('should return 1 item in the array', () => {
+      return request(app).delete(rootPath + '/1000').expect((response) => {
+        return expect(response.body.delete).toEqual(false);
+      });
     });
   });
 });
